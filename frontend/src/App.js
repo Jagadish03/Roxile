@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TransactionsTable from './components/TransactionsTable';
 import Search from './components/Search';
 import './styles.css';
+import MonthSelector from './components/MonthSelector';
 
 const App = () => {
   const [searchText, setSearchText] = useState('');
@@ -15,6 +16,7 @@ const App = () => {
     <div className="dashboard-container">
       <h1>Transaction Dashboard</h1>
       <Search onSearch={handleSearch} />
+      <MonthSelector selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
       <TransactionsTable search={searchText} selectedMonth={selectedMonth} 
       setPage={setPage}
       page={page}/>
