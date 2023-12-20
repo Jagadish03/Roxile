@@ -17,7 +17,7 @@ const TransactionsTable = ({ selectedMonth, setSearch, setPage, page, search }) 
     };
 
     fetchData();
-  }, [selectedMonth, search, page]);
+  }, [selectedMonth, search, page, setPage]);
 
   return (
     <div>
