@@ -1,0 +1,32 @@
+/* src/styles.css */
+.dashboard-container {
+    padding: 20px;
+  }
+  
+  .table-container {
+    margin-top: 20px;
+  }
+  
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .transactions-table th, .transactions-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+  .search-container input {
+    padding: 8px;
+    margin-right: 10px;
+  }
+  
+  /* Add more styles as needed */
+  
