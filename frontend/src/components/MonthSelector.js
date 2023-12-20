@@ -1,5 +1,7 @@
 // src/components/MonthSelector.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Totals from './Totals';
+import { getTotals } from '../api/api';
 
 const MonthSelector = ({ selectedMonth, setSelectedMonth }) => {
   const months = [
@@ -17,14 +19,39 @@ const MonthSelector = ({ selectedMonth, setSelectedMonth }) => {
     { value: '12', label: 'December' },
   ];
 
+  const [totals, setTotals] = useState({
+    totalAmount: 0,
+    totalSoldItems: 0,
+    totalNotSoldItems: 0,
+  });
+
+  useEffect(() => {
+    // Fetch totals when selectedMonth changes
+    const fetchTotals = async () => {
+      try {
+        const data = await getTotals(selectedMonth);
+        setTotals(data);
+      } catch (error) {
+        console.error('Error fetching totals:', error);
+      }
+    };
+
+    fetchTotals();
+  }, [selectedMonth]);
+
   return (
-    <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
-      {months.map((month) => (
-        <option key={month.value} value={month.value}>
-          {month.label}
-        </option>
-      ))}
-    </select>
+    <div>
+      <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
+        {months.map((month) => (
+          <option key={month.value} value={month.value}>
+            {month.label}
+          </option>
+        ))}
+      </select>
+
+      
+      <Totals totalAmount={totals.totalAmount} totalSoldItems={totals.totalSoldItems} totalNotSoldItems={totals.totalNotSoldItems} />
+    </div>
   );
 };
 
