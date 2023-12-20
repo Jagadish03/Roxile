@@ -1,7 +1,7 @@
 // src/components/MonthSelector.js
 import React, { useEffect, useState } from 'react';
 import Totals from './Totals';
-import { getTotals } from '../api/api';
+import { getStatistics } from '../api/api';
 
 const MonthSelector = ({ selectedMonth, setSelectedMonth }) => {
   const months = [
@@ -20,16 +20,15 @@ const MonthSelector = ({ selectedMonth, setSelectedMonth }) => {
   ];
 
   const [totals, setTotals] = useState({
-    totalAmount: 0,
+    totalSaleAmount: 0,
     totalSoldItems: 0,
     totalNotSoldItems: 0,
   });
 
   useEffect(() => {
-    // Fetch totals when selectedMonth changes
     const fetchTotals = async () => {
       try {
-        const data = await getTotals(selectedMonth);
+        const data = await getStatistics(selectedMonth);
         setTotals(data);
       } catch (error) {
         console.error('Error fetching totals:', error);
@@ -49,8 +48,7 @@ const MonthSelector = ({ selectedMonth, setSelectedMonth }) => {
         ))}
       </select>
 
-      
-      <Totals totalAmount={totals.totalAmount} totalSoldItems={totals.totalSoldItems} totalNotSoldItems={totals.totalNotSoldItems} />
+      <Totals {...totals} />
     </div>
   );
 };

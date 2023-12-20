@@ -10,22 +10,6 @@ export const getTransactions = async (month, search, page) => {
   }
 };
 
-export const getTotals = async (month) => {
-  try {
-    const response = await fetch(`http://localhost:3001/api/totals?month=${month}`);
-    const data = await response.json();
-    const { totalAmount, totalSoldItems, totalNotSoldItems } = data;
-    return {
-      totalAmount: totalAmount ,
-      totalSoldItems: totalSoldItems ,
-      totalNotSoldItems: totalNotSoldItems 
-    };
-  } catch (error) {
-    console.error('Error fetching totals:', error);
-    throw error;
-  }
-};
-
 export const getStatistics = async (month) => {
   try {
     const response = await fetch(`http://localhost:3001/api/statistics?month=${month}`);
