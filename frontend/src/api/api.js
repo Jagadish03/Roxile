@@ -1,4 +1,3 @@
-// src/api/api.js
 export const getTransactions = async (month, search, page) => {
     try {
       const response = await fetch(`http://localhost:3001/api/transactions?month=${month}&search=${search}&page=${page}`);
